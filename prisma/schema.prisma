@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  COMMERCANT
+}
+
+enum StatutUser {
+  ACTIF
+  SUSPENDU
+  REVOQUE
+}
+
+enum StatutAttribution {
+  EN_COURS
+  CLOTURE
+}
+
+model User {
+  id                String          @id @default(uuid())
+  email             String          @unique
+  password          String
+  nom               String
+  prenom            String
+  telephone         String?
+  adresse           String?
+  compteBancaire    String?
+  numeroBancaire    String?
+  beneficiaire      String?
+  role              Role            @default(COMMERCANT)
+  statut            StatutUser      @default(ACTIF)
+  premiereConnexion Boolean         @default(true)
+  dateEmbauche      DateTime        @default(now())
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  attributionsRecues    Attribution[]   @relation("CommercantAttributions")
+  attributionsDonnees   Attribution[]   @relation("AdminAttributions")
+  ventes                Vente[]
+  auditLogs             AuditLog[]
+
+  @@map("users")
+}
+
+model Categorie {
+  id          String    @id @default(uuid())
+  nom         String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  articles    Article[]
+
+  @@map("categories")
+}
+
+model Article {
+  id            String    @id @default(uuid())
+  code          String    @unique @db.VarChar(10)
+  libelle       String    @db.VarChar(50)
+  categorieId   String
+  prixUnitaire  Decimal   @db.Decimal(10, 2)
+  quantiteStock Int       @default(0)
+  seuilAlerte   Int       @default(5)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  categorie           Categorie            @relation(fields: [categorieId], references: [id])
+  attributionArticles AttributionArticle[]
+  ventes              Vente[]
+
+  @@map("articles")
+}
+
+model Attribution {
+  id              String              @id @default(uuid())
+  commercantId    String
+  adminId         String
+  dateAttribution DateTime            @default(now())
+  statut          StatutAttribution   @default(EN_COURS)
+  notes           String?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+
+  commercant      User                @relation("CommercantAttributions", fields: [commercantId], references: [id])
+  admin           User                @relation("AdminAttributions", fields: [adminId], references: [id])
+  articles        AttributionArticle[]
+  ventes          Vente[]
+
+  @@map("attributions")
+}
+
+model AttributionArticle {
+  id                   String      @id @default(uuid())
+  attributionId        String
+  articleId            String
+  quantiteAttribuee    Int
+  prixUnitaireSnapshot Decimal     @db.Decimal(10, 2)
+  createdAt            DateTime    @default(now())
+
+  attribution          Attribution @relation(fields: [attributionId], references: [id], onDelete: Cascade)
+  article              Article     @relation(fields: [articleId], references: [id])
+
+  @@unique([attributionId, articleId])
+  @@map("attribution_articles")
+}
+
+model Vente {
+  id                String      @id @default(uuid())
+  attributionId     String
+  commercantId      String
+  articleId         String
+  quantiteVendue    Int
+  prixUnitaireVente Decimal     @db.Decimal(10, 2)
+  montantTotal      Decimal     @db.Decimal(10, 2)
+  dateVente         DateTime    @default(now())
+  createdAt         DateTime    @default(now())
+
+  attribution       Attribution @relation(fields: [attributionId], references: [id])
+  commercant        User        @relation(fields: [commercantId], references: [id])
+  article           Article     @relation(fields: [articleId], references: [id])
+
+  @@map("ventes")
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  userId      String
+  action      String
+  entityType  String
+  entityId    String?
+  details     Json?
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("audit_logs")
+}
+
+model Parametre {
+  id          String   @id @default(uuid())
+  cle         String   @unique
+  valeur      String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("parametres")
+}
