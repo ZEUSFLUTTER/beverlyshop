@@ -67,9 +67,9 @@ export function Sidebar({ user, isOpen, setIsOpen }: SidebarProps) {
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-brand">
-            <div className="sidebar-brand-icon">IG</div>
+            <div className="sidebar-brand-icon">BS</div>
             <div className="sidebar-brand-text">
-              <h2>Inveritas</h2>
+              <h2>Beverly Shop</h2>
               <p>Gestion de Stock</p>
             </div>
             <button className="mobile-menu-btn" onClick={() => setIsOpen(false)} style={{ marginLeft: 'auto' }}>
