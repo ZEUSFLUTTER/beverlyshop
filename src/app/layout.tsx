@@ -3,9 +3,9 @@ import "./globals.css";
 import { ToastProvider } from "@/components/ui/Toast";
 
 export const metadata: Metadata = {
-  title: "BEVERLY SHOP — Gestion de Stock & Ventes | Boutique de Papeterie",
-  description: "Système de gestion de stock et de ventes pour boutique de papeterie. Gérez vos articles, commerçants, attributions et réconciliations.",
-  keywords: "gestion stock, ventes, papeterie, inventaire, commerçants",
+  title: "BEVERLY SHOP — Gestion de Stock Commerce Général",
+  description: "Système de gestion de stock et de ventes pour commerce général. Gérez vos articles, commerçants, attributions et réconciliations.",
+  keywords: "gestion stock, ventes, commerce général, inventaire, commerçants",
 };
 
 export default function RootLayout({
