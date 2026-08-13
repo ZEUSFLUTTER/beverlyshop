@@ -176,7 +176,7 @@ export default function LoginPage() {
             fontSize: '0.78rem',
             color: 'var(--text-muted)',
           }}>
-            © 2026 BEVERLY SHOP — Boutique de Papeterie
+            © 2026 BEVERLY SHOP — Boutique de commerce général
           </p>
         </div>
       </div>

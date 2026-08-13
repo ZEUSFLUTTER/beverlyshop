@@ -8,15 +8,12 @@ async function main() {
 
   // Créer les catégories par défaut
   const categories = [
-    { nom: 'Cahiers & Carnets', description: 'Cahiers, carnets, blocs-notes' },
-    { nom: 'Stylos & Crayons', description: 'Stylos à bille, feutres, crayons, marqueurs' },
-    { nom: 'Papier & Enveloppes', description: 'Ramettes de papier, enveloppes, papier coloré' },
-    { nom: 'Classeurs & Rangement', description: 'Classeurs, chemises, pochettes, trieurs' },
-    { nom: 'Fournitures de Bureau', description: 'Agrafeuses, perforateurs, trombones, ciseaux' },
-    { nom: 'Matériel Scolaire', description: 'Règles, équerres, compas, rapporteurs' },
-    { nom: 'Colles & Adhésifs', description: 'Bâtons de colle, scotch, rubans adhésifs' },
-    { nom: 'Art & Créativité', description: 'Peinture, pinceaux, papier dessin, crayons de couleur' },
-    { nom: 'Informatique & Accessoires', description: 'Clés USB, souris, tapis de souris, câbles' },
+    { nom: 'Alimentation', description: 'Boissons, conserves, snacks, épicerie' },
+    { nom: 'Produits d\'entretien', description: 'Lessive, savons, nettoyants ménagers' },
+    { nom: 'Beauté & Hygiène', description: 'Shampooing, dentifrice, déodorant, soins' },
+    { nom: 'Électronique', description: 'Piles, câbles, petits appareils, accessoires' },
+    { nom: 'Quincaillerie', description: 'Petits outils, visserie, accessoires' },
+    { nom: 'Articles ménagers', description: 'Ustensiles de cuisine, décoration, petit mobilier' },
     { nom: 'Divers', description: 'Articles divers non classés' },
   ];
 

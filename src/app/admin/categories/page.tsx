@@ -162,7 +162,7 @@ export default function CategoriesPage() {
             required 
             value={formData.nom} 
             onChange={e => setFormData({...formData, nom: e.target.value})} 
-            placeholder="Ex: Stylos & Crayons"
+            placeholder="Ex: Alimentation"
           />
           <div className="form-group w-full">
             <label className="form-label">Description (Optionnel)</label>

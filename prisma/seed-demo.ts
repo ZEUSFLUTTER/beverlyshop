@@ -27,10 +27,10 @@ async function main() {
 
   // Create articles
   const articlesData = [
-    { code: 'ART-001', libelle: 'Cahier 100 pages', prixUnitaire: 500, quantiteStock: 100, seuilAlerte: 10, categorieId: categorie.id },
-    { code: 'ART-002', libelle: 'Stylo Bleu', prixUnitaire: 100, quantiteStock: 200, seuilAlerte: 20, categorieId: categorie.id },
-    { code: 'ART-003', libelle: 'Rame de papier', prixUnitaire: 2500, quantiteStock: 50, seuilAlerte: 5, categorieId: categorie.id },
-    { code: 'ART-004', libelle: 'Sac à dos', prixUnitaire: 15000, quantiteStock: 5, seuilAlerte: 5, categorieId: categorie.id },
+    { code: 'ART-001', libelle: 'Bouteille d\'eau 1.5L', prixUnitaire: 500, quantiteStock: 100, seuilAlerte: 10, categorieId: categorie.id },
+    { code: 'ART-002', libelle: 'Savon de Marseille', prixUnitaire: 800, quantiteStock: 200, seuilAlerte: 20, categorieId: categorie.id },
+    { code: 'ART-003', libelle: 'Boîte de conserve', prixUnitaire: 1500, quantiteStock: 50, seuilAlerte: 5, categorieId: categorie.id },
+    { code: 'ART-004', libelle: 'Câble USB-C', prixUnitaire: 3000, quantiteStock: 15, seuilAlerte: 5, categorieId: categorie.id },
   ];
 
   for (const a of articlesData) {
